@@ -25,3 +25,6 @@ grep "2014-02-*" sharesDate.txt | awk '$7>1 &&  $7<2{print $7}'
 9 在$HOME/myshell目录中查找*.sh的文件，检索*.sh文件中"case关键字出现的文件名和行号
 find -name "*.sh" | xargs grep "case" -n
 find -name "*.sh" | xargs grep "case" -n | awk -F ":" '{print $2}'
+
+将doc变成unix
+sed -i 's/^M//g' a.txt > new.out
