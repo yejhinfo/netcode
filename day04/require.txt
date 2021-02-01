@@ -1,0 +1,27 @@
+
+1 列出上海大盘2014-05-29日的数据	
+grep "2014-05-29" sharesDate.txt | more
+
+2 列出上海大盘2014-05月份的数据 
+grep "2014-05-*" sharesDate.txt | wc -l
+
+3 列出2014-06月所有上涨的数据	
+grep "2014-06-*" sharesDate.txt | awk '$7>0{print}'
+
+4 统计上海大盘2014-05月所有上涨的数据 
+grep "2014-06-*" sharesDate.txt | awk '$7>0{print}' | wc -l
+5 显示上海大盘2014-02月上涨幅度最大的一天	 
+grep "2014-02-*" sharesDate.txt | sort -n -k7 | tail -1  (tail 是显示最后一行 -1是表示从最后一行向上输出几行)
+
+6 显示上海大盘2014-02月份所有上涨数据的时间和上涨的幅度(%)
+grep "2014-02-*" sharesDate.txt | awk '$7>0{print}' 
+
+7 显示上海大盘2014-02月份所有上涨数据的时间和上涨的幅度(%)，第5条-第10条之间的数据
+grep "2014-02-*" sharesDate.txt | awk '$7>0{print}' | sed -n "5,10p"
+
+8 列出上海大盘2014-02月份涨跌在1个点和2个点之间的数据
+grep "2014-02-*" sharesDate.txt | awk '$7>1 &&  $7<2{print $7}'
+
+9 在$HOME/myshell目录中查找*.sh的文件，检索*.sh文件中"case关键字出现的文件名和行号
+find -name "*.sh" | xargs grep "case" -n
+find -name "*.sh" | xargs grep "case" -n | awk -F ":" '{print $2}'
